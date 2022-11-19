@@ -1,0 +1,65 @@
+// NOTE: as JSON does not allow comments, the real file should be the one without "_"
+
+// `manifest.json` list additional info on how the downloaded 'app' should look like on a device, like its name, home screen icon, splash screen, etc.
+// You can name it whatever you like as long as it is included with the MIME type `application/manifest+json` (or `text/json` ?)
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json", // For auto-completion
+
+  // !!! You don;t need to supply all of the info below, and not all of them are supported in all devices
+
+  // Home Screen
+  "name": "Food Ninja", // App name
+  "short_name": "FN", // Shown if not enough space to show the full "name"
+
+  // Splash screnn
+  "background_color": "#FFE9D2",
+
+  // App screen
+  "theme_color": "#FFE1C4", // This affects e.g. the top status bar's colour on a mobile device
+  "start_url": "index.html", // (!!! User agent may ignore it) This can be absolute/realtive path
+  "display": "standalone", // How should it be displayed when OPENED as an app; will fallback to the next lower mode if unavailable; lowest is "browser"
+  // "orientation": "portrait-primary", // Default orientation of the app; "portrait-primary" means upright (instead of portrait but flipped by 180 degress) See https://w3c.github.io/screen-orientation/#screen-orientation-types
+  "icons": [
+    // A list of icons for use in different device sizes
+    {
+      "src": "/img/icons/icon-72x72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/img/icons/icon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/img/icons/icon-128x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/img/icons/icon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/img/icons/icon-152x152.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "/img/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/icons/icon-384x384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "/img/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
