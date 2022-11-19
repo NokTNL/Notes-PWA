@@ -12,15 +12,17 @@
   "short_name": "FN", // Shown if not enough space to show the full "name"
 
   // Splash screnn
-  "background_color": "#FFE9D2",
+  "background_color": "#FFE9D2", // !!! Not supported by iOS as of 2022
 
   // App screen
   "theme_color": "#FFE1C4", // This affects e.g. the top status bar's colour on a mobile device
   "start_url": "index.html", // (!!! User agent may ignore it) This can be absolute/realtive path
   "display": "standalone", // How should it be displayed when OPENED as an app; will fallback to the next lower mode if unavailable; lowest is "browser"
   // "orientation": "portrait-primary", // Default orientation of the app; "portrait-primary" means upright (instead of portrait but flipped by 180 degress) See https://w3c.github.io/screen-orientation/#screen-orientation-types
+
   "icons": [
     // A list of icons for use in different device sizes
+    // !!! For older iOS Safari, this is NOT supported and you need to use <link rel="apple-touch-icon"> in the HTML to link the icon. See `index.html`
     {
       "src": "/img/icons/icon-72x72.png",
       "type": "image/png",

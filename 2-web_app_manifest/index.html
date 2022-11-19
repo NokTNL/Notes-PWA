@@ -21,6 +21,19 @@
     <!-- Once loaded, the parsed file content will be visible in the 'Application' tab in browser devtools -->
     <link rel="manifest" href="manifest.json" />
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!-- (For iOS only) Older iOS Safari ignores `icons` in `manifest.json` and you need to explicitly list the icons here using <link rel="apple-touch-icon"> -->
+    <!-- If you don't link any icons here, the phone will use a SCREENSHOT of the app (ewww....) -->
+    <!-- In newer iOS, `icons` is supported, but if you have used <link rel="apple-touch-icon"> here, `icons` will be ignored -->
+    <link
+      rel="apple-touch-icon"
+      sizes="96x96"
+      href="/img/icons/icon-96x96.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/img/icons/icon-144x144.png"
+    />
   </head>
   <body class="grey lighten-4">
     <nav class="z-depth-0">
