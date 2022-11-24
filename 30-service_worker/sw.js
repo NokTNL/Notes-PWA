@@ -18,6 +18,7 @@ self.addEventListener("activate", (event) => {
 });
 
 // 'fetch' event
+// - Whenever the browser fetches something, this event will be fired and you can potentially intercept it
 // - this is needed to make the app work offline
 self.addEventListener("fetch", (event) => {
   console.log("fetch event", event);
