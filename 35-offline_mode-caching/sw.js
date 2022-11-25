@@ -2,6 +2,7 @@
 // You probably want to cache assets that do not change much over time, like the UI wireframe, icons, fonts etc.
 //    - These are called the 'app shell' assets
 self.addEventListener("install", (event) => {
+  console.log("service worker installed", event);
   // The browser may shut down the SW prematurely before all the caches are done
   //  - It does NOT work if you pass an async function --- the event listener does not wait for the returned promise to be resolved!
   // However, the "install" & "activate" event triggered by SW is an `ExtendableEvent` that has a special method, `waitUntil`
@@ -15,11 +16,12 @@ self.addEventListener("install", (event) => {
     // This is asynchronous so will return a Promise that resolves to the newly created Cache object
     caches.open("site-static").then(
       // `cache` is the Cache object opened/created: https://developer.mozilla.org/en-US/docs/Web/API/Cache
-      (cache) => {
+      async (cache) => {
         // Now we can add URLs we want to cache into the `cache` object
         // Use `add` for a single item, or `addAll` for an array of items
+        // The URL will be fetched and then have the response stored in CacheStorage
         // This will create key-value pairs in the CacheStorage, key = the URL; value = the cached asset
-        cache.addAll([
+        await cache.addAll([
           "/",
           "/index.html", // Without a server to resolve '/' to '/index.html', the browser does not know the difference. Therefore, cache both
           "/js/app.js",
@@ -31,6 +33,7 @@ self.addEventListener("install", (event) => {
           "https://fonts.googleapis.com/icon?family=Material+Icons",
           "https://fonts.gstatic.com/s/materialicons/v139/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
         ]);
+        console.log("All shell assets cached");
       }
     )
   );
@@ -41,6 +44,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  console.log("fetch event", event);
   // The event passed in here is a `FetchEvent` that has a special method, `respondWith()`, allowing you to INTERCEPT requests and send back an alternative response (instead of sending the request to the server)
   // You can pass in a Response object or a Promise that resolves to a Response object
   event.respondWith(
