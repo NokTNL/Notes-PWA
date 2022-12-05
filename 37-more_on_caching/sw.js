@@ -77,11 +77,27 @@ async function dynamicallyCache(request) {
   // NOTE: sometimes the browser has extensions that also dispatch fetch requests, but the URLs fetched starts with something like `chrome-extension://` and is not allowed in `cache.put` and will throw errors
   //    - Just add a condition to filter it
   if (request.url.startsWith("http")) {
-    await dynamicCache.put(request.url, response.clone());
     console.log(
       `Fetched new assets and stored in ${DYNAMIC_CACHE_NAME}`,
       response
     );
+    await dynamicCache.put(request.url, response.clone());
+    await limitDynamicCacheSize(3);
   }
   return response;
 }
+
+/**
+ * Limit dynamic cache size
+ */
+// If we keep caching non-shell assets, the dynamic cache can grow to very big
+// We can trim the older ones e.g. the like below:
+const limitDynamicCacheSize = async (maxSize) => {
+  const dynamicCache = await caches.open(DYNAMIC_CACHE_NAME);
+  const keys = await dynamicCache.keys();
+  if (keys.length > maxSize) {
+    // Delete the oldest, then call itself recursively so it will delete until it is <= maxSize (may not be the most efficient way to implement this but will do for now)
+    await dynamicCache.delete(keys[0]);
+    await limitDynamicCacheSize(maxSize);
+  }
+};

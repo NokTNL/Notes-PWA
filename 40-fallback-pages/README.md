@@ -1,0 +1,2 @@
+- The browser has its own built-in caching ability, but we can't control that directly. For development's sake, we can disable this in-built caching in the network tab on the Chrome devtools.
+- Both browser's cache and our cache using the CacheStorage API can be seen in `Cache Storage` in Chrome's devtools
