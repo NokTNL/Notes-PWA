@@ -1,6 +1,7 @@
 <!-- 
 
   Go to `/js/app.js` on how to register service worker
+    - See below on how to include that script
   Go to /sw.js on service worker's life-cycle events
 
  -->
@@ -133,6 +134,7 @@
       </form>
     </div>
     <!-- Script for registering service worker -->
+    <!-- !!!! Recommeded to be put in every pages html as well!, so which ever page you enter it will register the service worker for you. Entering another page merly re-register it (but will do nothing as it is the same service worker)-->
     <script src="/js/app.js"></script>
     <script src="js/ui.js"></script>
   </body>
